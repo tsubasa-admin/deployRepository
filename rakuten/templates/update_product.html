@@ -1,0 +1,33 @@
+<!doctype html>
+{% extends "base.html" %}
+{% load static %} 
+
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>商品編集画面</title>
+</head>
+
+<body>
+    {% block content %}
+
+    <div class="update_product">
+    <link href="{% static 'css/style_update_product.css' %}" rel="stylesheet">
+        <div style="update_product-triangle"></div>
+        <h1 class="update_product-header">商品編集画面</h1>
+
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">更新</button>
+</form>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.2
+django==4.1
+numpy==1.24.3
+pandas==1.5.3
+pip==23.0.1
+pipreqs==0.4.13
+pycparser==2.21
+pyopenssl==23.0.0
+pysocks==1.7.1
+requests==2.29.0
+soupsieve==2.4
+sqlparse==0.4.3

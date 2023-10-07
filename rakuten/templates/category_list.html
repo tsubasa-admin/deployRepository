@@ -1,0 +1,64 @@
+
+<!doctype html>
+{% extends "base.html" %}
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>カテゴリー一覧</title>
+</head>
+
+<body>
+    {% block content %}
+    <h1 class="my-3 ml-3">カテゴリー一覧</h1>
+
+        <div class="table-responsive-sm">
+            <table class="table table-striped table table-bordered">
+                <thead>
+                    <tr>
+                        <th>カテゴリーID</th>
+                        <th>カテゴリー名</th>
+                        <th>カテゴリーURL</th>
+                        <th>ボタン</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <form method="POST">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                    {% for object in object_list %}
+                        {% if object.user == request.user %}
+                        <tr>
+                            <td>{{ object.id }}</td>
+                            <td>{{ object.name }}</td>
+                            <td>{{ object.url }}</td>
+                            <td><a class="btn btn-primary"  href="{% url 'rakuten:detail_category' object.id %}">詳細</a></td>
+                            {% comment %} <input type="hidden" name="id" value={{ object.id }}>
+                            <td><input class="btn btn-info" type="submit" value="{{ object.name }}を一括取得"></td>
+                            <th><a class="btn btn-primary"  href="{% url 'rakuten:update_category' object.id %}">更新</a></th>
+                            <th><a class="btn btn-danger"  href="{% url 'rakuten:delete_category' object.id %}">削除</a></th> {% endcomment %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </form>
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+
+

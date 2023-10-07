@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+<html lang="ja">
+{% comment %} <div style="text-align:center;">
+<form method="POST">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <input type="hidden" name="next" value="{{ request.GET.next }}">
+   <input type="submit" value="ログイン">
+</form>
+</div> {% endcomment %}
+<boby>
+<div class="login">
+   <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
+   <div class="login-triangle"></div>
+  
+   <h2 class="login-header">ログイン</h2>
+
+<form method="POST">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <input type="hidden" name="next" value="{{ request.GET.next }}">
+   <input type="submit" value="ログイン">
+</form>
+</div>
+</boby>
+</html>
+{% endblock %}

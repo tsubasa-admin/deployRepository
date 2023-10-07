@@ -1,0 +1,71 @@
+<!doctype html>
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %} 
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>商品詳細画面</title>
+</head>
+
+
+{% block content %}
+
+<body>
+<div>
+    <h1 class="my-3 ml-3">商品詳細画面</h1>
+    
+    <!-- テーブル -->
+    <table class="table table-striped table table-bordered">
+        <!-- 商品詳細画面を出力 -->
+        <tbody align="center">
+            <tr>
+                <td>商品ID:</td>
+                <td>{{ object.id }}</td>
+            </tr>
+            <tr>
+                <td>登録日:</td>
+                <td>{{ object.cretate_at }}</td>
+            </tr>
+            <tr>
+                <td>商品名:</td>
+                <td>{{ object.name }}</td>
+            </tr>
+            <tr>
+                <td>商品URL:</td>
+                <td>{{ object.url }}</td>
+            </tr>
+            <tr>
+                <td>店舗名:</td>
+                <td>{{ object.store }}</td>
+            </tr>   
+            <tr>
+                <td>価格:</td>
+                <td>{{ object.price | intcomma }} 円</td>
+            </tr>                
+            <tr>
+                <td>変動価格:</td>
+                <td>{{ object.price_fluctuation | intcomma }} 円</td>                
+            </tr>
+            <tr>
+                <td>カテゴリー名</td>
+                <td>{{ object.category }}</td>                
+            </tr>
+        </tbody>
+    </table>
+    <div class='btn-toolbar' role="toolbar">
+        <p><a class="btn btn-info" href="{{object.url }}">この商品を楽天で購入する</a></p>
+        <p><a class="btn btn-primary" href="{% url 'rakuten:update_product' object.id %}">更新</a></p>
+        <p><a class="btn btn-danger" href="{% url 'rakuten:delete_product' object.id %}">削除</a></p>
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>
